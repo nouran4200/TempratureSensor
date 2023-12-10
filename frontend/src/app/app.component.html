@@ -1,0 +1,49 @@
+<!-- app.component.html -->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+</div>
+<form [formGroup]="simulationForm">
+  <label for="hexData">Hex Data:</label>
+  <textarea id="hexData" formControlName="hexData" placeholder="Enter data in hex..."></textarea>
+  <button type="button" (click)="simulateData()">Simulate Data</button>
+</form>
+
+<div>
+  <h2>Devices and Last Reported Temperature</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Device Id (decimal)</th>
+      <th>Last Reported Temperature</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let device of devices">
+      <td>{{ device.deviceId }}</td>
+      <td>{{ device.lastTemperature }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="selectedDevice">
+  <h2>Selected Device Details</h2>
+  <table>
+    <thead>
+    <tr>
+      <th>Temperature</th>
+      <th>Time of Arrival</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of selectedDeviceData">
+      <td>{{ data.temperature }}</td>
+      <td>{{ data.timeOfArrival }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<router-outlet></router-outlet>
